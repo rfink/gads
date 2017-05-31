@@ -138,6 +138,34 @@ func (s *ConstantDataService) GetOperatingSystemVersionCriterion() (operatingSys
 	return getResp.OperatingSystemVersionCriterions, err
 }
 
+func (s *ConstantDataService) GetProductBiddingCategoryCriterion(selector Selector) (categoryData []ProductBiddingCategoryData, err error) {
+	respBody, err := s.Auth.request(
+		constantDataServiceUrl,
+		"getProductBiddingCategoryData",
+			struct {
+			XMLName xml.Name
+			Sel     Selector
+		}{
+			XMLName: xml.Name{
+				Space: "https://adwords.google.com/api/adwords/cm/v201607",
+				Local: "getProductBiddingCategoryData",
+			},
+			Sel: selector,
+		},
+	)
+	if err != nil {
+		return categoryData, err
+	}
+	getResp := struct {
+		ProductBiddingCategoryDatas []ProductBiddingCategoryData `xml:"rval"`
+	}{}
+	err = xml.Unmarshal([]byte(respBody), &getResp)
+	if err != nil {
+		return categoryData, err
+	}
+	return getResp.ProductBiddingCategoryDatas, err
+}
+
 func (s *ConstantDataService) GetUserInterestCriterion() (userInterests []UserInterestCriterion, err error) {
 	respBody, err := s.Auth.request(
 		constantDataServiceUrl,
