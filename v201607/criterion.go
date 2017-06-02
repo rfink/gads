@@ -160,6 +160,22 @@ type ProductCriterion struct {
 	Text       string             `xml:"text,omitempty"`
 }
 
+// Represents a google_product_category level
+type ProductBiddingCategory ProductDimension
+
+type ProductBiddingCategoryData struct {
+	DimensionValue       ProductBiddingCategory `xml:"dimensionValue"`
+	ParentDimensionValue ProductBiddingCategory `xml:"parentDimensionValue"`
+	Country              string                 `xml:"country"`
+	Status               string                 `xml:"status"`
+	DisplayValue         []StringMapEntry       `xml:"displayValue"`
+}
+
+type StringMapEntry struct {
+	Key   string `xml:"key"`
+	Value string `xml:"value"`
+}
+
 type GeoPoint struct {
 	Latitude  int64 `xml:"latitudeInMicroDegrees"`
 	Longitude int64 `xml:"longitudeInMicroDegrees"`

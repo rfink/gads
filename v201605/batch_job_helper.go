@@ -98,10 +98,10 @@ func (s *BatchJobHelper) UploadBatchJobOperations(jobOperations []interface{}, u
 		req.Header.Set("x-goog-resumable", "start")
 
 		response, err := client.Do(req)
-
 		if err != nil {
 			return err
 		}
+		defer response.Body.Close()
 
 		// If we got a valid upload url it will be 201
 		if response.StatusCode != 201 {
@@ -134,10 +134,10 @@ func (s *BatchJobHelper) UploadBatchJobOperations(jobOperations []interface{}, u
 		req.Header.Set("Content-Range", fmt.Sprintf("bytes 0-%v/%v", bodyLength-1, bodyLength))
 
 		resp, err := client.Do(req)
-
 		if err != nil {
 			return err
 		}
+		defer resp.Body.Close()
 
 		respBody, err := ioutil.ReadAll(resp.Body)
 

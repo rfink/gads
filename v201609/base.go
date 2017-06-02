@@ -232,6 +232,7 @@ func (a *Auth) request(serviceUrl ServiceUrl, action string, body interface{}) (
 	if err != nil {
 		return []byte{}, err
 	}
+	defer resp.Body.Close()
 
 	respBody, err = ioutil.ReadAll(resp.Body)
 

@@ -43,6 +43,7 @@ func (s *ReportDownloadService) Get(reportDefinition ReportDefinition) (res inte
 	if err != nil {
 		return res, err
 	}
+	defer resp.Body.Close()
 	/*respBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return res, err
@@ -59,6 +60,7 @@ func (s *ReportDownloadService) AWQL(awql string, fmt string) (res interface{}, 
 	if err != nil {
 		return res, err
 	}
+	defer resp.Body.Close()
 	/*respBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return res, err
