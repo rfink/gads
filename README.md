@@ -2,7 +2,7 @@
 
 Package gads provides a wrapper for the Google Adwords SOAP API.  Based off of
 [emiddleton/gads](https://github.com/emiddleton/gads), this version
-was updated to support v201606, v201607 and v201609 and Go 1.5.
+was updated to support v201605, v201607 and v201609 and Go 1.5.
 
 Currently this project remains a fork and is a joint effort between
 [colinmutter/gads](https://github.com/colinmutter/gads) and [rfink/gads](https://github.com/rfink/gads).
@@ -38,7 +38,7 @@ oauth configuration file flag.
 
 ## versions
 
-This project currently supports v201606, v201607 and v201609.  To select
+This project currently supports v201605, v201607 and v201609.  To select
 the appropriate version, import the specific package:
 
 	  import (
